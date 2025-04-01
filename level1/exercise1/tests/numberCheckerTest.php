@@ -5,22 +5,48 @@ use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../numberChecker.php';
 class NumberCheckerTest extends TestCase
-{
-    public function testIsEven()
-    {
-        $numberChecker = new NumberChecker(4);
-        $this->assertTrue($numberChecker->isEven());
+{       
+    private NumberChecker $numberZero;
+    private NumberChecker $numberOne;
+    private NumberChecker $numberTwo;
+    private NumberChecker $numberNegative;
 
-        $numberChecker = new NumberChecker(3);
-        $this->assertFalse($numberChecker->isEven());
+
+    public function setUp(): void
+    {
+        $this->numberZero = new NumberChecker(0);
+        
+
+        $this->numberOne = new NumberChecker(1);
+        
+
+        $this->numberTwo = new NumberChecker(2);
+
+        $this->numberNegative = new NumberChecker(-1);
+        
+    }
+    public function testIsEven():void
+    {
+       $this->assertTrue($this->numberTwo->isEven());
+       
     }
 
-    public function testIsPositive()
+    public function testIsOdd():void
     {
-        $numberChecker = new NumberChecker(5);
-        $this->assertTrue($numberChecker->isPositive());
-
-        $numberChecker = new NumberChecker(-3);
-        $this->assertFalse($numberChecker->isPositive());
+        $this->assertFalse($this->numberOne->isEven());
+       
     }
+
+    public function testIsPositive():void
+    {
+        $this->assertTrue($this->numberOne->isPositive());
+       
+    }
+
+    public function testIsNegative():void
+    {
+        $this->assertFalse($this->numberNegative->isPositive());
+       
+    }
+
 }
