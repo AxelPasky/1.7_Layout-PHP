@@ -3,25 +3,42 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
+require_once __DIR__ . '/exercise5phpbasic.php';
 
-class GradeCheckerTest extends TestCase{
-    public function testCheckGrade() {
-        
-        $this->assertEquals("First Division.", checkGrade(60));
-        $this->assertEquals("First Division.", checkGrade(100));
-
-      
-        $this->assertEquals("Second Division.", checkGrade(45));
-        $this->assertEquals("Second Division.", checkGrade(59));
-
-       
-        $this->assertEquals("Third Division.", checkGrade(33));
-        $this->assertEquals("Third Division.", checkGrade(44));
-
-      
-        $this->assertEquals("Not Passed.", checkGrade(0));
-        $this->assertEquals("Not Passed.", checkGrade(32));
-
+class GradeCheckerTest extends TestCase
+{
+    public function testFirstDivision()
+    {
+        $this->assertSame("First Division.", checkGrade(60));
+        $this->assertSame("First Division.", checkGrade(100));
     }
 
+    public function testSecondDivision()
+    {
+        $this->assertSame("Second Division.", checkGrade(45));
+        $this->assertSame("Second Division.", checkGrade(59));
+    }
+
+    public function testThirdDivision()
+    {
+        $this->assertSame("Third Division.", checkGrade(33));
+        $this->assertSame("Third Division.", checkGrade(44));
+    }
+
+    public function testNotPassed()
+    {
+        $this->assertSame("Not Passed.", checkGrade(0));
+        $this->assertSame("Not Passed.", checkGrade(32));
+        $this->assertSame("Not Passed.", checkGrade(-1));
+    }
+
+        
+    public function testInvalidStringInput(){
+        $this->expectException(TypeError::class);
+        checkGrade("abc");
+    }
+     public function testInvalidNullInput(){
+        $this->expectException(TypeError::class);
+        checkGrade(null);
+     }
 }
