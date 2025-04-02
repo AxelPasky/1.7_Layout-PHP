@@ -16,10 +16,8 @@ class NumberCheckerTest extends TestCase
     {
         $this->numberZero = new NumberChecker(0);
         
-
         $this->numberOne = new NumberChecker(1);
         
-
         $this->numberTwo = new NumberChecker(2);
 
         $this->numberNegative = new NumberChecker(-1);
@@ -28,6 +26,7 @@ class NumberCheckerTest extends TestCase
     public function testIsEven():void
     {
        $this->assertTrue($this->numberTwo->isEven());
+       
        
     }
 
@@ -40,6 +39,7 @@ class NumberCheckerTest extends TestCase
     public function testIsPositive():void
     {
         $this->assertTrue($this->numberOne->isPositive());
+        $this->assertFalse($this->numberZero->isPositive());
        
     }
 
